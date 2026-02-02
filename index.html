@@ -6,6 +6,10 @@
   <title>Pooja 💖</title>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
+    html {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fad0c4 50%, #fecfef 75%, #ff9a9e 100%);
+    }
+
     body {
       font-family: Arial, sans-serif;
       background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fad0c4 50%, #fecfef 75%, #ff9a9e 100%);
@@ -67,12 +71,18 @@
       text-shadow: 4px 4px 8px rgba(0,0,0,0.8);
       margin: 40px auto 0 auto;
       max-width: 80%;
+      opacity: 0;
+      transition: opacity 2s ease;
     }
 
     .heart {
       position: fixed;
       font-size: 24px;
       animation: floatUp 4s linear infinite;
+    }
+
+    #mainText {
+      transition: opacity 1s ease;
     }
 
     @keyframes floatUp {
@@ -88,6 +98,8 @@
       height: 100%;
       z-index: -1;
       background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fad0c4 50%, #fecfef 75%, #ff9a9e 100%);
+      opacity: 0;
+      transition: opacity 2s ease;
     }
 
     .collage img {
@@ -95,7 +107,8 @@
       object-fit: cover;
       border-radius: 15px;
       box-shadow: 0 6px 12px rgba(0,0,0,0.4);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, opacity 1s ease;
+      opacity: 0;
     }
 
     .collage img:hover {
@@ -200,28 +213,44 @@
     <img src="public/pooja10.jpeg" alt="Pooja">
   </div>
 
-  <audio autoplay loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mp3">
+  <audio id="bgAudio" loop>
+    <source src="public/audio.mp3" type="audio/mp3">
   </audio>
 
 
   <h1>Pooja 💖</h1>
-  <p>Hey Pooja, I just had to tell you how much you mean to me. Ever since we met, you've brought so much joy and love into my life. Your smile lights up my world, and I can't get enough of your laugh. Will you be my Valentine? It would mean the world to me. Love you! 🌹💕</p>
+  <p id="mainText">I just had to tell you how much you mean to me. Ever since we met, you've brought so much joy and love into my life. Your smile lights up my world, and I can't get enough of your laugh. Will you be my Valentine? It would mean the world to me. Love you! 🌹💕</p>
 
   <button id="yes" onclick="yesClicked()">Yes 😍</button>
   <button id="no" onmouseover="moveButton()">No 🙈</button>
 
-  <div id="message">Yay! Pooja, you just made me the happiest! Your yes means everything to me. I love you so much and can't wait for all our adventures together. Happy Valentine's Day! 😘💕</div>
+  <div id="message">Yay! Pooja, you just made me the happiest! 💖💍 Now you’re officially my Valentine 😌<br>Your yes means everything to me. I love you so much and can't wait for all our adventures together. Happy Valentine's Day! 😘💕</div>
 
   <script>
     if (window.innerWidth < 768) {
       document.body.innerHTML = "<div style='text-align: center; padding: 50px; font-family: Arial, sans-serif;'><h1>Sorry, this page is designed for desktop viewing.</h1><p>Please open it on a larger screen for the best experience! 💻</p></div>";
     }
 
+    const messages = ["Are you sure? 🥺", "Pooja pls 😭", "Last chance 😔", "Okay I’ll cry 💔"];
+    let messageIndex = 0;
+
     function yesClicked() {
-      document.getElementById("message").style.display = "block";
-      document.getElementById("collage").style.display = "block";
-      document.body.style.background = "none";
+      document.getElementById("mainText").style.opacity = "0";
+      setTimeout(() => {
+        document.getElementById("mainText").style.display = "none";
+        document.getElementById("message").style.display = "block";
+        document.getElementById("collage").style.display = "block";
+        setTimeout(() => {
+          document.getElementById("message").style.opacity = "1";
+          document.getElementById("collage").style.opacity = "1";        const imgs = document.querySelectorAll('.collage img');
+        imgs.forEach((img, index) => {
+          setTimeout(() => img.style.opacity = '1', index * 200);
+        });        }, 10);
+      }, 1000);
+      document.body.style.background = "transparent";
+      const audio = document.getElementById("bgAudio");
+      audio.volume = 1;
+      audio.play();
       confetti();
     }
 
@@ -233,6 +262,9 @@
       const y = Math.random() * (window.innerHeight - 100);
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
+
+      noBtn.textContent = messages[messageIndex % messages.length];
+      messageIndex++;
     }
 
     setInterval(() => {
