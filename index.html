@@ -2,23 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pooja 💖</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fad0c4 50%, #fecfef 75%, #ff9a9e 100%);
       text-align: center;
-      padding-top: 100px;
+      padding-top: 0;
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: background 1s ease;
     }
 
     h1 {
       font-size: 3rem;
-      color: #fff;
+      color: white;
+      text-shadow: 4px 4px 8px rgba(0,0,0,0.8);
+      display: block;
+      margin: 0 auto 20px auto;
+      max-width: 80%;
     }
 
     p {
       font-size: 1.5rem;
-      color: #fff;
+      color: white;
+      text-shadow: 4px 4px 8px rgba(0,0,0,0.8);
+      display: block;
+      margin: 0 auto 20px auto;
+      max-width: 80%;
     }
 
     button {
@@ -39,7 +56,7 @@
     #no {
       background-color: white;
       color: #ff4d6d;
-      position: absolute;
+      position: static;
     }
 
     #message {
@@ -47,32 +64,188 @@
       color: white;
       margin-top: 40px;
       display: none;
+      text-shadow: 4px 4px 8px rgba(0,0,0,0.8);
+      margin: 40px auto 0 auto;
+      max-width: 80%;
     }
+
+    .heart {
+      position: fixed;
+      font-size: 24px;
+      animation: floatUp 4s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-800px); opacity: 0; }
+    }
+
+    .collage {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 25%, #fad0c4 50%, #fecfef 75%, #ff9a9e 100%);
+    }
+
+    .collage img {
+      position: absolute;
+      object-fit: cover;
+      border-radius: 15px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease;
+    }
+
+    .collage img:hover {
+      transform: scale(1.05);
+    }
+
+    .collage img:nth-child(1) {
+      top: 10%;
+      left: 5%;
+      width: 20%;
+      height: 25%;
+      transform: rotate(-5deg);
+    }
+
+    .collage img:nth-child(2) {
+      top: 5%;
+      left: 30%;
+      width: 25%;
+      height: 30%;
+      transform: rotate(3deg);
+    }
+
+    .collage img:nth-child(3) {
+      top: 15%;
+      left: 60%;
+      width: 20%;
+      height: 25%;
+      transform: rotate(-3deg);
+    }
+
+    .collage img:nth-child(4) {
+      top: 40%;
+      left: 10%;
+      width: 30%;
+      height: 35%;
+      transform: rotate(5deg);
+    }
+
+    .collage img:nth-child(5) {
+      top: 35%;
+      left: 45%;
+      width: 20%;
+      height: 25%;
+      transform: rotate(-2deg);
+    }
+
+    .collage img:nth-child(6) {
+      top: 45%;
+      left: 70%;
+      width: 25%;
+      height: 30%;
+      transform: rotate(4deg);
+    }
+
+    .collage img:nth-child(7) {
+      top: 70%;
+      left: 5%;
+      width: 25%;
+      height: 30%;
+      transform: rotate(-4deg);
+    }
+
+    .collage img:nth-child(8) {
+      top: 65%;
+      left: 35%;
+      width: 20%;
+      height: 25%;
+      transform: rotate(2deg);
+    }
+
+    .collage img:nth-child(9) {
+      top: 75%;
+      left: 60%;
+      width: 30%;
+      height: 35%;
+      transform: rotate(-6deg);
+    }
+
+    .collage img:nth-child(10) {
+      top: 50%;
+      left: 25%;
+      width: 20%;
+      height: 25%;
+      transform: rotate(10deg);
+    }
+
   </style>
 </head>
 
 <body>
 
+  <div class="collage" id="collage" style="display: none;">
+    <img src="public/pooja1.jpeg" alt="Pooja">
+    <img src="public/pooja2.jpeg" alt="Pooja">
+    <img src="public/pooja3.jpeg" alt="Pooja">
+    <img src="public/pooja4.jpeg" alt="Pooja">
+    <img src="public/pooja5.jpeg" alt="Pooja">
+    <img src="public/pooja6.jpeg" alt="Pooja">
+    <img src="public/pooja7.jpeg" alt="Pooja">
+    <img src="public/pooja8.jpeg" alt="Pooja">
+    <img src="public/pooja9.jpeg" alt="Pooja">
+    <img src="public/pooja10.jpeg" alt="Pooja">
+  </div>
+
+  <audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mp3">
+  </audio>
+
+
   <h1>Pooja 💖</h1>
-  <p>Will you be my Valentine? 🌹</p>
+  <p>Hey Pooja, I just had to tell you how much you mean to me. Ever since we met, you've brought so much joy and love into my life. Your smile lights up my world, and I can't get enough of your laugh. Will you be my Valentine? It would mean the world to me. Love you! 🌹💕</p>
 
   <button id="yes" onclick="yesClicked()">Yes 😍</button>
   <button id="no" onmouseover="moveButton()">No 🙈</button>
 
-  <div id="message">YAYYY!! 💕 See you soon Valentine 😘</div>
+  <div id="message">Yay! Pooja, you just made me the happiest! Your yes means everything to me. I love you so much and can't wait for all our adventures together. Happy Valentine's Day! 😘💕</div>
 
   <script>
+    if (window.innerWidth < 768) {
+      document.body.innerHTML = "<div style='text-align: center; padding: 50px; font-family: Arial, sans-serif;'><h1>Sorry, this page is designed for desktop viewing.</h1><p>Please open it on a larger screen for the best experience! 💻</p></div>";
+    }
+
     function yesClicked() {
       document.getElementById("message").style.display = "block";
+      document.getElementById("collage").style.display = "block";
+      document.body.style.background = "none";
+      confetti();
     }
+
 
     function moveButton() {
       const noBtn = document.getElementById("no");
+      noBtn.style.position = "absolute";
       const x = Math.random() * (window.innerWidth - 100);
       const y = Math.random() * (window.innerHeight - 100);
       noBtn.style.left = x + "px";
       noBtn.style.top = y + "px";
     }
+
+    setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.bottom = "0px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 4000);
+}, 300);
+
   </script>
 
 </body>
